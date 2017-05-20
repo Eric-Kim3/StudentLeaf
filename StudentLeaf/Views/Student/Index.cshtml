@@ -1,0 +1,41 @@
+﻿@model List<StudentLeaf.Models.Student>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Students</h2>
+
+<div class="form-horizontal">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th> Student Name </th>
+                <th> Lesson Plan </th>
+                <th> Lesson Style </th>
+                <th> Hours Remaining </th>
+                <th> Delete </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(s.Name, "Edit", new { id = s.Id })</td>
+                    @if (s.ActiveLessons.Count > 1)
+                    {
+                        <td>Multiple Active Lessons</td>
+                    }
+                    else
+                    {
+                        <td>@s.ActiveLessons[0].LessonPlan</td>
+                    }
+                        <td>@s.ActiveLessons[0].Style</td>
+                        <td>@s.ActiveLessons[0].Hours</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { id = s.Id })</td>
+
+                    </tr>
+                    }
+        </tbody>
+      </table>
+</div>
