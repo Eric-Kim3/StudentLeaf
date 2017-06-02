@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace StudentLeaf.Models
 {
@@ -11,15 +8,19 @@ namespace StudentLeaf.Models
         [Required]
         public DateTime DTG { get; set; }
         [Required]
+        public int Hours { get; set; }
+        [Required]
         public string LessonPlan { get; set; }
         [Required]
         public string Style { get; set; }
         [Required]
         public int InstructorId { get; set; }
         [Required]
-        public int SInstructorId { get; set; }
+        public int TInstructorId { get; set; }
         [Required]
         public int Id { get; set; }
+
+
 
     }
 }

@@ -1,16 +1,15 @@
 ﻿using StudentLeaf.Models;
-using System;
+using StudentLeaf.Models.ViewModel;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace StudentLeaf.Controllers
 {
     public class StudentController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public StudentController()
         {
@@ -28,7 +27,7 @@ namespace StudentLeaf.Controllers
                 .Include(t => t.ActiveLessons)
                 .SingleOrDefault(t => t.Id == id);
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return HttpNotFound();
             }
@@ -60,6 +59,50 @@ namespace StudentLeaf.Controllers
 
             return View("Index", active);
         }
-     }
+
+        public ActionResult Detail(int id)
+        {
+            var student = _context.Student.Include(t => t.ActiveLessons).Single(s => s.Id == id);
+
+
+
+
+
+
+            return View("Detail", student);
+
+        }
+
+        public ActionResult History(int id)
+        {
+            var student = _context.Student.Include(t => t.History).SingleOrDefault(s => s.Id == id);
+
+            var tDict = new Dictionary<int, string>();
+            var viewModel = new HistoryInstructorViewModel();
+
+            viewModel.Student = _context.Student.Single(s => s.Id == id);
+
+            foreach (var l in student.History)
+            {
+                if (!tDict.ContainsKey(l.InstructorId))
+                {
+                    tDict.Add(l.InstructorId, _context.Instructor.Single(s => s.InstructorId == l.InstructorId).Name);
+                }
+                if (!tDict.ContainsKey(l.TInstructorId))
+                {
+                    tDict.Add(l.TInstructorId, _context.Instructor.Single(s => s.InstructorId == l.TInstructorId).Name);
+                }
+            }
+
+            viewModel.InstructorDictionary = tDict;
+            return View(viewModel);// student);
+        }
+
+        public ActionResult CreateNewStudent()
+        {
+
+            return View("CreateNewStudent");
+        }
+    }
 
 }

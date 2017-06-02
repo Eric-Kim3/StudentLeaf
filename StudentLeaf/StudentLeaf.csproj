@@ -214,13 +214,35 @@
     <Compile Include="Migrations\201705191408226_Update Tables.Designer.cs">
       <DependentUpon>201705191408226_Update Tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705311427541_AddHoursToStudentANDAddInstructor.cs" />
+    <Compile Include="Migrations\201705311427541_AddHoursToStudentANDAddInstructor.Designer.cs">
+      <DependentUpon>201705311427541_AddHoursToStudentANDAddInstructor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705311454424_AddInstructor.cs" />
+    <Compile Include="Migrations\201705311454424_AddInstructor.Designer.cs">
+      <DependentUpon>201705311454424_AddInstructor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705311455231_AddInstruct.cs" />
+    <Compile Include="Migrations\201705311455231_AddInstruct.Designer.cs">
+      <DependentUpon>201705311455231_AddInstruct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705311509310_AddTInstructorID.cs" />
+    <Compile Include="Migrations\201705311509310_AddTInstructorID.Designer.cs">
+      <DependentUpon>201705311509310_AddTInstructorID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706011903569_RemoveSInstructorID.cs" />
+    <Compile Include="Migrations\201706011903569_RemoveSInstructorID.Designer.cs">
+      <DependentUpon>201706011903569_RemoveSInstructorID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActiveLesson.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Instructor.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SessonRecord.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\ViewModel\HistoryInstructorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -284,6 +306,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\Detail.cshtml" />
+    <Content Include="Views\Student\History.cshtml" />
+    <Content Include="Views\Student\CreateNewStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -305,6 +330,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705191408226_Update Tables.resx">
       <DependentUpon>201705191408226_Update Tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705311427541_AddHoursToStudentANDAddInstructor.resx">
+      <DependentUpon>201705311427541_AddHoursToStudentANDAddInstructor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705311454424_AddInstructor.resx">
+      <DependentUpon>201705311454424_AddInstructor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705311455231_AddInstruct.resx">
+      <DependentUpon>201705311455231_AddInstruct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705311509310_AddTInstructorID.resx">
+      <DependentUpon>201705311509310_AddTInstructorID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706011903569_RemoveSInstructorID.resx">
+      <DependentUpon>201706011903569_RemoveSInstructorID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,39 @@
+﻿@model StudentLeaf.Models.ViewModel.HistoryInstructorViewModel
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>History</h2>
+
+<h5>@Model.Student.Name </h5>
+
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th> Date Time </th>
+        <th> Hours Used </th>
+        <th> Style </th>
+        <th> Lesson Plan </th>
+        <th> Selling Instructor </th>
+        <th> Teaching Instructor </th>
+        <th> Edit/Delete </th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model.Student.History)
+        {
+            <tr>
+                <td>@s.DTG.ToShortDateString() </td>
+                <td>@s.Hours </td>
+                <td>@s.Style </td>
+                <td>@s.LessonPlan </td>
+                <td>@Model.InstructorDictionary[s.InstructorId]</td>
+                <td>@Model.InstructorDictionary[s.TInstructorId] </td>
+                <td>@Html.ActionLink("Edit", "Edit", new {id = s.Id}) / @Html.ActionLink("Delete", "Delete", new {id = s.Id})</td>
+            </tr>
+        }
+    </tbody>
+</table>

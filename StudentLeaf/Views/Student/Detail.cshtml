@@ -1,0 +1,34 @@
+﻿@model StudentLeaf.Models.Student
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lesson Plan</h2>
+
+<h5>@Model.Name</h5>
+
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th> Style </th>
+        <th> Lesson Plan </th>
+        <th> Hours Remaining </th>
+        <th> Selling Instructor </th>
+        <th> Edit/Delete </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var s in Model.ActiveLessons)
+    {
+        <tr>
+            <td>@s.Style </td>
+            <td>@s.LessonPlan </td>
+            <td>@s.Hours </td>
+            <td>@s.SInstructor </td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = s.Id }) / @Html.ActionLink("Delete", "Delete", new { id = s.Id })</td>
+        </tr>
+    }
+    </tbody>
+</table>
