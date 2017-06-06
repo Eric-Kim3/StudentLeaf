@@ -9,30 +9,61 @@
 <h2>Students</h2>
 
 <div class="btn btn-primary">@Html.ActionLink("New Student", "CreateNewStudent", "Student", new { @style = "color:white; font-weight:bold;" })</div>
-<div class="form-horizontal">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th> Student Name </th>
-                <th> Lesson Plan </th>
-                <th> Edit/Delete </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var s in Model)
-            {
-                <tr>
-                    <td>@Html.ActionLink(s.Name, "Detail", new { id = s.Id })</td>
-                   
-                    <td>@Html.ActionLink("History", "History", new { id = s.Id })</td>
-                    
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = s.Id }) /
-                        @Html.ActionLink("Delete", "Delete", new { id = s.Id })
-                    </td>
 
-                </tr>
-            }
-        </tbody>
-      </table>
+
+<div class="form-horizontal">
+    <table id="studentTable" class="table table-hover">
+        <thead>
+        <tr>
+            <th> Student Name </th>
+            <th> Lesson Plan </th>
+            <th> Edit/Delete </th>
+        </tr>
+        </thead>
+    </table>
 </div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $.ajax({
+            type: "GET",
+            url: "/Student/List",
+            data: "",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+
+
+                $.each(data,
+                    function(index, context) {
+                        console.log(
+                            'name: ' + data[index].Name +
+                            ' AND context.ActiveLesson : ' + displayActiveLesson(context.ActiveLessons)+
+                            ' AND context.Id: ' + context.Id);
+
+                        $('#studentTable').append('<tr><td>' +
+                            context.Name +
+                            '</td><td>' +
+                            displayActiveLesson(context.ActiveLessons) +
+                            '</td><td>' +
+                            'edit/del' +
+                            '</td></tr>');
+                    });
+
+                function displayActiveLesson(data) {
+                    var lessonPlan = '';
+                    $.each(data,
+                        function (index, context) {
+                            console.log('data[index].LessonPlan: ' + context.LessonPlan);
+                            lessonPlan += context.LessonPlan + ' ';
+                        });
+                    return lessonPlan;
+                }
+            }
+        });
+
+    })
+</script>

@@ -18,9 +18,17 @@ namespace StudentLeaf.Controllers
         // GET: Student
         public ActionResult Index()
         {
-            var students = _context.Student.Include(t => t.ActiveLessons).ToList();
-            return View(students);
+            //var students = _context.Student.Include(t => t.ActiveLessons).ToList();
+            return View();//students);
         }
+
+        public JsonResult List()
+        {
+            var students = _context.Student.Include(t => t.ActiveLessons).ToList();
+
+            return Json(students, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Edit(int id)
         {
             var student = _context.Student
