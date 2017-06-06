@@ -39,15 +39,18 @@
 
                 $.each(data,
                     function(index, context) {
-                        console.log(
-                            'name: ' + data[index].Name +
-                            ' AND context.ActiveLesson : ' + displayActiveLesson(context.ActiveLessons)+
-                            ' AND context.Id: ' + context.Id);
-
                         $('#studentTable').append('<tr><td>' +
                             context.Name +
                             '</td><td>' +
+
+                            '<div class="dropdown">' +
+                            '<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Lesson Plan' +
+                            '<span class="caret"></span></button>' +
+                            '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">' +
                             displayActiveLesson(context.ActiveLessons) +
+                            '</ul> </div>' +
+
+
                             '</td><td>' +
                             'edit/del' +
                             '</td></tr>');
@@ -57,13 +60,19 @@
                     var lessonPlan = '';
                     $.each(data,
                         function (index, context) {
-                            console.log('data[index].LessonPlan: ' + context.LessonPlan);
-                            lessonPlan += context.LessonPlan + ' ';
+                            lessonPlan += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">' +
+                                context.LessonPlan +
+                                '</a></li>';
                         });
                     return lessonPlan;
                 }
             }
         });
 
+
+        
+
     })
+
+    
 </script>
